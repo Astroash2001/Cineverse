@@ -143,6 +143,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   will-change: scroll-position;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300aeff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>'),
+    auto;
 }
 
 body::before {
@@ -439,4 +441,15 @@ input[type="reset"] {
 :focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+/* Global cursor style for all buttons and clickable elements */
+button,
+a,
+input[type="submit"],
+input[type="button"],
+.favorite-button,
+.search-button,
+.hero-button {
+  cursor: inherit !important;
 }
