@@ -378,6 +378,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 0.5rem 1.5rem 2rem;
 }
 
 .movies-container::before,
@@ -715,4 +716,12 @@
     width: 100%;
     margin-top: 8px;
   }
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  padding: 1rem 0.5rem;
+  margin: 0 auto;
 }
