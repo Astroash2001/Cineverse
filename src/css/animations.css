@@ -1,0 +1,618 @@
+/* animations.css - Collection of animations for the movie website */
+
+/* Fade In animations with different delays */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-in-delayed-1 {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+
+.fade-in-delayed-2 {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+.fade-in-delayed-3 {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* Slide animations */
+.slide-up {
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+.slide-left {
+  animation: slideLeft 0.5s ease-in-out forwards;
+}
+
+.slide-right {
+  animation: slideRight 0.5s ease-in-out forwards;
+}
+
+/* Glow effect animations */
+.pulse-glow {
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 50%;
+  height: 300%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmerEffect 3s infinite;
+  pointer-events: none;
+}
+
+/* 3D flip effect */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: var(--glassmorphic-bg);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Float animation */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid var(--accent-color);
+  white-space: nowrap;
+  margin: 0 auto;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Spotlight effect */
+.spotlight {
+  position: relative;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Cinema curtain effect */
+.cinema-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.cinema-reveal::before,
+.cinema-reveal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 51%;
+  height: 100%;
+  background: var(--dark-bg);
+  z-index: 3;
+  transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.cinema-reveal::before {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.cinema-reveal::after {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.cinema-reveal.reveal::before {
+  transform: translateX(0);
+}
+
+.cinema-reveal.reveal::after {
+  transform: translateX(0);
+}
+
+/* Keyframes definitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px var(--accent-glow);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    transform: translateX(-200%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(300%) rotate(30deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent-color);
+  }
+}
+
+/* Intersection Observer animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation for child elements */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.stagger-children.revealed > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.stagger-children.revealed > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.stagger-children.revealed > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.stagger-children.revealed > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.stagger-children.revealed > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.stagger-children.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Global Animations for Movie Website */
+
+/* Fade Down */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In From Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In From Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Pulse Effect */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Glow Effect */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(var(--accent-color-rgb), 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.5);
+  }
+}
+
+/* Text Glow */
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.8);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(var(--accent-color-rgb), 0.5);
+  }
+}
+
+/* Rotate */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pop */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Slow Spin */
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Heartbeat */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.1);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+/* Animation Classes */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fadeDown {
+  animation: fadeDown 0.6s ease-out forwards;
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+.animate-glow {
+  animation: glow 2s infinite;
+}
+
+.animate-textGlow {
+  animation: textGlow 2s infinite;
+}
+
+.animate-rotate {
+  animation: rotate 10s linear infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-pop {
+  animation: pop 0.3s ease-out;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s infinite;
+}
+
+/* Animation Delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Animation Speeds */
+.speed-fast {
+  animation-duration: 0.4s;
+}
+
+.speed-normal {
+  animation-duration: 0.8s;
+}
+
+.speed-slow {
+  animation-duration: 1.2s;
+}
+
+/* Smooth Scrolling Indicator */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  transform-origin: 0%;
+  z-index: 9999;
+}
+
+/* For reduced motion settings */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

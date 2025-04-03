@@ -1,0 +1,194 @@
+/* App container styling */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 5;
+}
+
+/* Background elements */
+.bg-element {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-element-1 {
+  top: 10%;
+  left: 5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--primary-color), transparent 70%);
+  animation: float 25s infinite alternate ease-in-out;
+}
+
+.bg-element-2 {
+  bottom: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--accent-color), transparent 70%);
+  animation: float 30s infinite alternate-reverse ease-in-out;
+}
+
+.bg-element-3 {
+  top: 60%;
+  left: 30%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
+  animation: float 35s infinite alternate ease-in-out;
+}
+
+/* Star field background */
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: twinkle var(--twinkle-duration) infinite alternate;
+}
+
+.star.small {
+  width: 1px;
+  height: 1px;
+}
+
+.star.medium {
+  width: 2px;
+  height: 2px;
+}
+
+.star.large {
+  width: 3px;
+  height: 3px;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+  100% {
+    transform: translate(-50px, -30px) scale(0.9);
+  }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-secondary)
+  );
+  transform-origin: 0%;
+  transform: scaleX(0);
+  z-index: 9999;
+  box-shadow: 0 0 10px rgba(var(--accent-color-rgb), 0.5);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .bg-element-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .bg-element-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .bg-element-3 {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Footer styling */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--glassmorphic-border);
+  background: rgba(6, 10, 18, 0.8);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
+}
+
+.footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer a:hover {
+  color: var(--accent-secondary);
+}
